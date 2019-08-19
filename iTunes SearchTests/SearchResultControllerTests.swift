@@ -61,10 +61,73 @@ class SearchResultControllerTests: XCTestCase {
             }
         }
         
-        print(controller.searchResults)
+//        print(controller.searchResults)
         XCTAssertTrue(controller.searchResults.count > 0)
     }
     
+    
+    func testSearchResultsForGoodData() {
+        let mockDataLoader = MockDataLoader()
+        
+        mockDataLoader.data = goodResultData
+        mockDataLoader.error = nil
+        
+        // Use depedency injection
+        
+        let controller = SearchResultController(dataLoader: mockDataLoader)
+        let searchExpectation = expectation(description: "Waiting for search results")
+        controller.performSearch(for: "Garage Band", resultType: .software) {
+            // async
+            
+            searchExpectation.fulfill()
+        }
+        
+        // sync
+        waitForExpectations(timeout: 1)
+        
+        // test our assertions
+        XCTAssertEqual(2, controller.searchResults.count)
+        let firstResult = controller.searchResults.first
+        
+        XCTAssertEqual("GarageBand", firstResult?.title)
+        XCTAssertEqual("Apple", firstResult?.artist)
+        
+    }
+    
+    // Test that it fails
+    
+    enum SearchError: Error, Equatable {
+        case badJson
+    }
+    
+    
+    func testSearchResultsForBadData() {
+        let mockDataLoader = MockDataLoader()
+        let error = SearchError.badJson
+        
+        mockDataLoader.data = badResultData
+        mockDataLoader.error = error
+        
+        // Use depedency injection
+        
+        let controller = SearchResultController(dataLoader: mockDataLoader)
+        let searchExpectation = expectation(description: "Waiting for search results")
+        controller.performSearch(for: "Garage Band", resultType: .software) {
+            // async
+            
+            searchExpectation.fulfill()
+        }
+        
+        // sync
+        waitForExpectations(timeout: 1)
+        
+        // test our assertions
+        XCTAssertEqual(0, controller.searchResults.count)
+        XCTAssertNotNil(controller.error)
+//        print(controller.error)
+        
+//        XCTAssertEqual(error, controller.error!)
+    }
     
     
     

@@ -25,6 +25,21 @@ let goodResultData = """
 		}
 	]
 }
-"""
+""".data(using: .utf8)!
 
 
+let badResultData = """
+{
+    resultCount": 2,
+    "results": [
+        {
+            "trackName": "GarageBand",
+            "artistName": "Apple"
+        }
+        {
+            "trackName": "Shortcut: GarageBand Edition",
+            "artistName": "Mark Keroles"
+        
+    ]
+}
+""".data(using: .utf8)!

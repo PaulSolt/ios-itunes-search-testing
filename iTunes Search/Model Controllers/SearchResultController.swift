@@ -13,6 +13,8 @@ class SearchResultController {
     // Dependencies are variables
     private var dataLoader: NetworkDataLoader
     
+    var error: Error?
+    
     // initializer depedency injection
     init(dataLoader: NetworkDataLoader = URLSession.shared) {
         self.dataLoader = dataLoader
@@ -22,6 +24,7 @@ class SearchResultController {
     // init(point: Point)
     
     func performSearch(for searchTerm: String, resultType: ResultType, completion: @escaping () -> Void) {
+        error = nil
         
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         let parameters = ["term": searchTerm,
@@ -35,7 +38,10 @@ class SearchResultController {
         request.httpMethod = HTTPMethod.get.rawValue
         
         dataLoader.loadData(with: request) { (data, error) in
-            if let error = error { NSLog("Error fetching data: \(error)") }
+            if let error = error {
+                NSLog("Error fetching data: \(error)")
+                self.error = error
+            }
             guard let data = data else { completion(); return }
             
             do {
