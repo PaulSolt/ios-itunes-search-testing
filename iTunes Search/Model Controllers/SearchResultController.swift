@@ -10,6 +10,17 @@ import Foundation
 
 class SearchResultController {
     
+    // Dependencies are variables
+    private var dataLoader: NetworkDataLoader
+    
+    // initializer depedency injection
+    init(dataLoader: NetworkDataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+    
+    // init(x: Int, y: Int, z: Int)
+    // init(point: Point)
+    
     func performSearch(for searchTerm: String, resultType: ResultType, completion: @escaping () -> Void) {
         
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
@@ -23,8 +34,7 @@ class SearchResultController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
         
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
-            
+        dataLoader.loadData(with: request) { (data, error) in
             if let error = error { NSLog("Error fetching data: \(error)") }
             guard let data = data else { completion(); return }
             
@@ -38,7 +48,6 @@ class SearchResultController {
             
             completion()
         }
-        dataTask.resume()
     }
     
     let baseURL = URL(string: "https://itunes.apple.com/search")!

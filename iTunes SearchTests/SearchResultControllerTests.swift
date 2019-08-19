@@ -51,18 +51,19 @@ class SearchResultControllerTests: XCTestCase {
         let downloadedResultsExpectation = expectation(description: "Downloaded Results")
         
         controller.performSearch(for: "GarageBand", resultType: .software) {
-//            XCTFail()
-            
             downloadedResultsExpectation.fulfill()
         }
         
         // This line of code makes our following code synchronous
         waitForExpectations(timeout: 5) { (error) in
-            print("Error: \(error)")
+            if let error = error {
+                print("Error: \(error)")
+            }
         }
         
         print(controller.searchResults)
         XCTAssertTrue(controller.searchResults.count > 0)
     }
+    
     
 }
