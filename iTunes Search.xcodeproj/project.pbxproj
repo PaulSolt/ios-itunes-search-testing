@@ -19,6 +19,8 @@
 		BD69DABA230B0AE00008E962 /* SearchResultControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DAB9230B0AE00008E962 /* SearchResultControllerTests.swift */; };
 		BD69DABC230B145F0008E962 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DABB230B145F0008E962 /* NetworkDataLoader.swift */; };
 		BD69DABE230B16240008E962 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DABD230B16240008E962 /* URLSession+NetworkDataLoader.swift */; };
+		BD69DAC0230B184F0008E962 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DABF230B184F0008E962 /* MockDataLoader.swift */; };
+		BD69DAC3230B1B300008E962 /* SearchResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD69DAC2230B1B300008E962 /* SearchResultData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		BD69DAB9230B0AE00008E962 /* SearchResultControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultControllerTests.swift; sourceTree = "<group>"; };
 		BD69DABB230B145F0008E962 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		BD69DABD230B16240008E962 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		BD69DABF230B184F0008E962 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		BD69DAC2230B1B300008E962 /* SearchResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				BD69DAB9230B0AE00008E962 /* SearchResultControllerTests.swift */,
+				BD69DABF230B184F0008E962 /* MockDataLoader.swift */,
+				BD69DAC2230B1B300008E962 /* SearchResultData.swift */,
 				BD69DAB3230B0A8E0008E962 /* Info.plist */,
 			);
 			path = "iTunes SearchTests";
@@ -270,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD69DAC0230B184F0008E962 /* MockDataLoader.swift in Sources */,
+				BD69DAC3230B1B300008E962 /* SearchResultData.swift in Sources */,
 				BD69DABA230B0AE00008E962 /* SearchResultControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
