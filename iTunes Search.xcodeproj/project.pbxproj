@@ -19,6 +19,8 @@
 		BDF3E293232FEE4500E459C7 /* SearchResultControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF3E292232FEE4500E459C7 /* SearchResultControllerTests.swift */; };
 		BDF3E295232FF8DF00E459C7 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF3E294232FF8DF00E459C7 /* NetworkDataLoader.swift */; };
 		BDF3E297232FFA9A00E459C7 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF3E296232FFA9A00E459C7 /* URLSession+NetworkDataLoader.swift */; };
+		BDF3E299232FFDE800E459C7 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF3E298232FFDE800E459C7 /* MockDataLoader.swift */; };
+		BDF3E29B232FFF5700E459C7 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF3E29A232FFF5700E459C7 /* SearchData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		BDF3E292232FEE4500E459C7 /* SearchResultControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultControllerTests.swift; sourceTree = "<group>"; };
 		BDF3E294232FF8DF00E459C7 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		BDF3E296232FFA9A00E459C7 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		BDF3E298232FFDE800E459C7 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		BDF3E29A232FFF5700E459C7 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			children = (
 				BDF3E28C232FEE0B00E459C7 /* Info.plist */,
 				BDF3E292232FEE4500E459C7 /* SearchResultControllerTests.swift */,
+				BDF3E29A232FFF5700E459C7 /* SearchData.swift */,
+				BDF3E298232FFDE800E459C7 /* MockDataLoader.swift */,
 			);
 			path = "iTunes SearchTests";
 			sourceTree = "<group>";
@@ -272,6 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF3E299232FFDE800E459C7 /* MockDataLoader.swift in Sources */,
+				BDF3E29B232FFF5700E459C7 /* SearchData.swift in Sources */,
 				BDF3E293232FEE4500E459C7 /* SearchResultControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

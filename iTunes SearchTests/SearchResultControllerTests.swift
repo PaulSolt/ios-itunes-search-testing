@@ -53,11 +53,25 @@ class SearchResultControllerTests: XCTestCase {
     }
     
     func testSearchResultForGoodData() {
-        
         // URLSession dependency is locking us into Async / delayed logic
         
+        let mock = MockDataLoader()
+        mock.data = goodData
+        let controller = SearchResultController(dataLoader: mock)
+        let completitionExpectation = expectation(description: "Async Completition")
         
+        controller.performSearch(for: "GarageBand", resultType: .software) {
+            completitionExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)  // Can omit the completion handler if it times out
+        
+        // Add your test cases after the wait, which will synchronously wait until async operation finishes
+        
+        // AssertEqual(expected, actual)
+        XCTAssertEqual(2, controller.searchResults.count)
+        
+        XCTAssertEqual("GarageBand", controller.searchResults[0].title)
+        XCTAssertEqual("Apple", controller.searchResults[0].artist)
     }
-    
-    
 }
