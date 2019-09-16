@@ -34,7 +34,19 @@ class ItunesSearchTableViewController: UITableViewController, UISearchBarDelegat
             break
         }
         
-        searchResultController.performSearch(for: searchTerm, resultType: resultType) {
+        searchResultController.performSearch(for: searchTerm, resultType: resultType) { result  in
+            
+            // TODO: Use the result type if there's a server error and update UI
+            switch result {
+            case .success(let results):
+                print("Received: \(results)")
+                // TODO: make sure the result array is updated
+                
+            case .failure(let error):
+                print("Display error in UI (if appropriate): \(error)")
+            }
+            
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

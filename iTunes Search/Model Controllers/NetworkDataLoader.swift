@@ -13,4 +13,7 @@ protocol NetworkDataLoader {
     func loadData(with request: URLRequest,
                   completion: @escaping (Data?, Error?) -> Void)
     
+    // We can add more functionality
+    //    func canParseData(Data?) -> Bool
+
 }

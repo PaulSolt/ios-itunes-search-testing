@@ -39,7 +39,7 @@ class SearchResultControllerTests: XCTestCase {
         
         let controller = SearchResultController()
         let completionCalled = expectation(description: "SearchResultsReturned")
-        controller.performSearch(for: "GarageBand", resultType: .software) {
+        controller.performSearch(for: "GarageBand", resultType: .software) { _ in
             completionCalled.fulfill()
         }
         
@@ -60,7 +60,7 @@ class SearchResultControllerTests: XCTestCase {
         let controller = SearchResultController(dataLoader: mock)
         let completitionExpectation = expectation(description: "Async Completition")
         
-        controller.performSearch(for: "GarageBand", resultType: .software) {
+        controller.performSearch(for: "GarageBand", resultType: .software) { _ in
             completitionExpectation.fulfill()
         }
         
@@ -74,4 +74,63 @@ class SearchResultControllerTests: XCTestCase {
         XCTAssertEqual("GarageBand", controller.searchResults[0].title)
         XCTAssertEqual("Apple", controller.searchResults[0].artist)
     }
+    
+    
+    func testSearchResultForBadJSONData() {
+        // URLSession dependency is locking us into Async / delayed logic
+        
+        let mock = MockDataLoader()
+        mock.data = badJSONData
+        let controller = SearchResultController(dataLoader: mock)
+        let completitionExpectation = expectation(description: "Async Completition")
+        
+        controller.performSearch(for: "GarageBand", resultType: .software) { result in
+            
+            switch result {
+            case .failure(let error):
+                    XCTAssertEqual(SearchError.decodeError, error)
+            case .success:
+                    XCTFail()
+            }
+            
+            completitionExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)  // Can omit the completion handler if it times out
+        
+        // Add your test cases after the wait, which will synchronously wait until async operation finishes
+        
+        // AssertEqual(expected, actual)
+        XCTAssertEqual(0, controller.searchResults.count)
+    }
+    
+    
+    
+    func testSearchResultForNoData() {
+        // URLSession dependency is locking us into Async / delayed logic
+        
+        let mock = MockDataLoader()
+        mock.data = nil
+        let controller = SearchResultController(dataLoader: mock)
+        let completitionExpectation = expectation(description: "Async Completition")
+        
+        controller.performSearch(for: "GarageBand", resultType: .software) { result in
+            
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(SearchError.noData, error)
+            case .success:
+                XCTFail()
+            }
+            
+            completitionExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)  // Can omit the completion handler if it times out
+        
+        // Add your test cases after the wait, which will synchronously wait until async operation finishes
+        
+        XCTAssertEqual(0, controller.searchResults.count)
+    }
+
 }
