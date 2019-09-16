@@ -41,6 +41,7 @@ class SearchResultController {
         dataTask.resume()
     }
     
+    // https://itunes.apple.com/search?entity=software&term=garageband
     let baseURL = URL(string: "https://itunes.apple.com/search")!
     var searchResults: [SearchResult] = []
 }
